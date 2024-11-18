@@ -1,21 +1,17 @@
 """Test eGauge setup process."""
-
 import pytest
+from homeassistant.exceptions import ConfigEntryNotReady
+from pytest_homeassistant_custom_component.common import MockConfigEntry
+
 from custom_components.egauge import (
+    EGaugeDataUpdateCoordinator,
     async_reload_entry,
-)
-from custom_components.egauge import (
     async_setup_entry,
-)
-from custom_components.egauge import (
     async_unload_entry,
 )
-from custom_components.egauge import EGaugeDataUpdateCoordinator
 from custom_components.egauge.const import (
     DOMAIN,
 )
-from homeassistant.exceptions import ConfigEntryNotReady
-from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from .const import MOCK_CONFIG
 
@@ -25,7 +21,7 @@ from .const import MOCK_CONFIG
 # Home Assistant using the pytest_homeassistant_custom_component plugin.
 # Assertions allow you to verify that the return value of whatever is on the left
 # side of the assertion matches with the right side.
-@pytest.mark.asyncio
+@pytest.mark.asyncio()
 async def test_setup_unload_and_reload_entry(
     hass, bypass_get_data, bypass_get_registers
 ):
@@ -54,7 +50,7 @@ async def test_setup_unload_and_reload_entry(
     assert config_entry.entry_id not in hass.data[DOMAIN]
 
 
-@pytest.mark.asyncio
+@pytest.mark.asyncio()
 async def test_setup_entry_exception(hass, error_on_get_data):
     """Test ConfigEntryNotReady when API raises an exception during entry setup."""
     config_entry = MockConfigEntry(domain=DOMAIN, data=MOCK_CONFIG, entry_id="test")

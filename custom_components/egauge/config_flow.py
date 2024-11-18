@@ -1,5 +1,4 @@
 """Adds config flow for eGauge."""
-
 from typing import Any
 
 import voluptuous as vol

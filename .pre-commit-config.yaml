@@ -8,18 +8,32 @@ repos:
       - id: trailing-whitespace
   - repo: local
     hooks:
-      - id: black
-        name: black
-        entry: black
-        language: system
-        types: [python]
-        require_serial: true
+      #      - id: black
+      #        name: black
+      #        entry: black
+      #        language: system
+      #        types: [python]
+      #        require_serial: true
       - id: flake8
         name: flake8
         entry: flake8
         language: system
         types: [python]
         require_serial: true
+      - id: ruff
+        name: ruff
+        entry: ruff check
+        language: python
+        repo: https://github.com/astral-sh/ruff-pre-commit
+        # Ruff version.
+        rev: v0.6.3
+        types_or: [python, pyi]
+        hooks:
+          # Run the linter.
+          - id: ruff
+            args: [--fix]
+          # Run the formatter.
+          - id: ruff-format
   #      - id: reorder-python-imports
   #        name: Reorder python imports
   #        entry: reorder-python-imports

@@ -1,5 +1,4 @@
 """Representation of an eGauge entity."""
-
 from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
     _DataUpdateCoordinatorT,

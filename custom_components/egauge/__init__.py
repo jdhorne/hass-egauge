@@ -4,7 +4,6 @@ Custom integration to integrate eGauge with Home Assistant.
 For more details about this integration, please refer to
 https://github.com/neggert/egauge
 """
-
 import logging
 from datetime import timedelta
 from typing import override
@@ -41,18 +40,6 @@ async def async_setup(hass: core.HomeAssistant, config: dict) -> bool:  # noqa: 
     return True
 
 
-# TODO: fix this issue
-# Logger: homeassistant.helpers.frame  # noqa: ERA001
-# Source: helpers/frame.py:151
-# First occurred: 6:02:51 PM (1 occurrences)
-# Last logged: 6:02:51 PM
-#
-# Detected code that calls async_forward_entry_setup for integration egauge with title:
-# http://192.168.xx.xxx and entry_id: XXXXXXXXXXXXXXXX, during setup without
-# awaiting async_forward_entry_setup, which can cause the setup lock to be released
-# before the setup is done. This will stop working in Home Assistant 2025.1. Please
-# report this issue.
-#
 async def async_setup_entry(
     hass: core.HomeAssistant, entry: config_entries.ConfigEntry
 ) -> bool:
