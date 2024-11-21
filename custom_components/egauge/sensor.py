@@ -1,4 +1,5 @@
 """Sensor platform for integration_blueprint."""
+
 import asyncio
 
 from homeassistant import core
@@ -119,15 +120,12 @@ class EGaugeSensor(EGaugeEntity, SensorEntity):
         value = data.get(self.register_name)
         value = value * self.unit_conversion
         if self.state_class == SensorStateClass.TOTAL_INCREASING and value < 0:
-            pv = value
-            value = abs(value)
             _LOGGER.debug(
-                "%s is total_increasing: %s -> %s (%s)",
+                "%s is total_increasing yet value is negative (%s); setting to zero",
                 self.name,
-                pv,
                 value,
-                f"{value:.2f}",
             )
+            value = 0.0
 
         return f"{value:.2f}"
 
